@@ -1,0 +1,4 @@
+{:require  [fourinarow_devcards.core]
+ :init-fns [fourinarow_devcards.core/init]
+ :compiler-options {:asset-path "js/devcards.out"
+                    :devcards true}}

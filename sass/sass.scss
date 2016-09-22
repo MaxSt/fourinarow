@@ -1,0 +1,397 @@
+$font-stack: "Helvetica Neue", Helvetica, Arial, sans-serif !default;
+$primary-color: #333;
+
+$green: #1FDA9A;
+$yellow: #fde74c;
+$red: #FF847C;
+$blue: #1BA3E1;
+$darkred: #E84A5F;
+$darkgray: #55606F;
+$mediumgray: #E6DADF;
+$lightgray: #F2F2F2;
+
+@keyframes dotclick {
+    0%   {width: 7vmin;height:7vmin}
+    50%  {width: 3vmin;height:3vmin}
+    100% {width: 7vmin;height:7vmin}
+}
+
+body {
+  font: 100% $font-stack;
+  color: $primary-color;
+  background-color: $lightgray;
+  padding: 0px;
+  margin: 0px;
+}
+
+h1 {
+  color: $darkgray;
+  padding-bottom: 3vmin;
+  text-align: center;
+  line-height: 0.9vmin;
+  font-size: 4vmin;
+}
+
+.buttonrow {
+  display:flex;
+}
+
+.btn {
+  display:inline-block;
+  cursor:pointer;
+  margin: 1vmin;
+  background: $blue;
+  font-size: 3vmin;
+  background-image: linear-gradient(to bottom, $blue, darken($blue, 3%));
+  border-bottom: 1vmin solid darken($blue, 15%);
+  border-radius: 1.5vmin;
+  color: #ffffff;
+  padding: 1.5vmin;
+  text-decoration: none;
+  &:hover {
+    background: lighten($blue, 10%);
+    background-image: linear-gradient(to bottom, lighten($blue, 10%), lighten($blue, 7%));
+    border-bottom: 1vmin solid $blue;
+    text-decoration: none;
+  }
+}
+
+.leveloverlay {
+  position: absolute;
+  font-size: 5vmin;
+  top: 30vmin;
+  left: 50%;
+  transform: translateX(-50%) translateY(-50%);
+  font-weight:bold;
+  padding: 10vmin;
+  background-color: $lightgray;
+  border: 1vmin solid darken($lightgray, 10%);
+  color: $darkgray;
+  border-radius: 1vmin;
+  opacity: 0.95;
+
+}
+
+
+.gratz{
+  font-weight: bold;
+  text-align:center;
+  color: $lightgray;
+  border-radius:0.5vmin;
+  font-size: 5vmin;
+  background-color: $green;
+  border-bottom: 2vmin solid darken($green, 15%);
+  padding:5vmin;
+}
+.center{
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   justify-content: center;
+  .stats{
+    max-height:10vmin;
+    min-width: 95vmin;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    .level{
+      display:inline-block;
+      color: #ffffff;
+      font-weight: bold;
+      border-radius: 0.5vmin;
+      text-align:left;
+      font-size:3vmin;
+      //width: 90vmin;
+      color: darken($lightgray, 35%);
+      // background-color: darken($lightgray, 10%);
+      // border-bottom: 0.2em solid darken($lightgray, 25%);
+      padding:1vmin;
+    }
+    .score{
+      font-size:2vmin;
+      flex-grow:1;
+      text-align:center;
+      padding-left: 4vmin;
+      padding-right: 4vmin;
+      color: darken($lightgray, 35%);
+    }
+  }
+  .game{
+    // border: 0.5vmin solid darken($lightgray, 35%);
+    // border-radius: 0.5vmin;
+    -webkit-tap-highlight-color: transparent;
+    user-select: none;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    cursor: pointer;
+    display: flex;
+    background-color: $lightgray;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    .row{
+      width:100%;
+      flex-direction: row;
+      justify-content: center;
+      align-items: row;
+      display: flex;
+      padding: 0vmin;
+      margin: 0vmin;
+      .grid{
+        display: flex;
+        background-color: $darkgray;
+        align-items: center;
+        justify-content: center;
+        margin: 0vmin;
+        box-shadow: inset 0.5vmin 0.5vmin 0vmin 0.5vmin rgba(0,0,0,0.10);
+        padding: 0vmin;
+        border-radius: 0.5vmin;
+        border: 0.1vmin solid $lightgray;
+        // border: 0vmin;
+        width: 9vmin;
+        height: 9vmin;
+        .dot {
+        box-shadow: inset -0.5vmin -0.5vmin 0vmin 0.5vmin rgba(0,0,0,0.10);
+          &.red{
+            background-color: $red;
+          }
+          &.blue{
+            background-color: $blue;
+          }
+          &.green{
+            background-color: $green;
+          }
+          &.white{
+            background-color: $lightgray;
+          }
+          &.animate {
+            animation-name: dotclick;
+            animation-duration: 0.2s;
+            animation-iteration-count: 1;
+            animation-timing-function: ease-out;
+          }
+
+          &.on {
+            border: 0.7vmin solid $yellow;
+          }
+          display: inline-block;
+          border-radius: 50%;
+          width: 7vmin;
+          height: 7vmin;
+          border: 0.7vmin solid darken($darkgray, 10%);
+        }
+      }
+    }
+  }
+}
+
+$preview-animation-duration: 3s;
+@keyframes preview-on {
+    0%   {border: 0.4vmin solid darken($darkgray, 10%)};
+    49%   {border: 0.4vmin solid darken($darkgray, 10%)};
+    50%   {border: 0.4vmin solid $yellow;}
+    100%   {border: 0.4vmin solid $yellow;}
+}
+@keyframes preview-off {
+    0%   {border: 0.4vmin solid $yellow;}
+    49%   {border: 0.4vmin solid $yellow;}
+    50%   {border: 0.4vmin solid darken($darkgray, 10%)};
+    100%   {border: 0.4vmin solid darken($darkgray, 10%)};
+}
+
+@keyframes preview-click-off {
+    0% {
+      width: 4vmin;
+      height: 4vmin;
+      border: 0.4vmin solid $yellow;
+    }
+    5% {
+      width: 2.5vmin;
+      height:2.5vmin;
+      border: 0.4vmin solid $yellow;
+    }
+    10% {
+      width: 4vmin;
+      height:4vmin;
+      border: 0.4vmin solid $yellow;
+    }
+    49% {
+      width: 4vmin;
+      height:4vmin;
+      border: 0.4vmin solid $yellow;
+    }
+    50% {
+      width: 4vmin;
+      height:4vmin;
+      border: 0.4vmin solid darken($darkgray, 10%);
+    }
+    55% {
+      width: 2.5vmin;
+      height:2.5vmin;
+      border: 0.4vmin solid darken($darkgray, 10%);
+    }
+    60% {
+      width: 4vmin;
+      height:4vmin;
+      border: 0.4vmin solid darken($darkgray, 10%);
+    }
+    100% {
+      width: 4vmin;
+      height:4vmin;
+      border: 0.4vmin solid darken($darkgray, 10%);
+    }
+}
+
+@keyframes preview-click-on {
+    0% {
+      width: 4vmin;
+      height: 4vmin;
+      border: 0.4vmin solid darken($darkgray, 10%);
+    }
+    5% {
+      width: 2.5vmin;
+      height:2.5vmin;
+      border: 0.4vmin solid darken($darkgray, 10%);
+    }
+    10% {
+      width: 4vmin;
+      height:4vmin;
+      border: 0.4vmin solid darken($darkgray, 10%);
+    }
+    49% {
+      width: 4vmin;
+      height:4vmin;
+      border: 0.4vmin solid darken($darkgray, 10%);
+    }
+    50% {
+      width: 4vmin;
+      height:4vmin;
+      border: 0.4vmin solid $yellow;
+    }
+    55% {
+      width: 2.5vmin;
+      height:2.5vmin;
+      border: 0.4vmin solid $yellow;
+    }
+    60% {
+      width: 4vmin;
+      height:4vmin;
+      border: 0.4vmin solid $yellow;
+    }
+    100% {
+      width: 4vmin;
+      height:4vmin;
+      border: 0.4vmin solid $yellow;
+    }
+}
+
+.text {
+    h3 {
+      color: $darkgray;
+      font-size:2.5vmin;
+      font-weight:bold;
+      margin-top:2vmin;
+      margin-bottom:2vmin;
+    }
+    color: $darkgray;
+    font-size:2vmin;
+}
+
+.pblock{
+  display:flex;
+  align-items: center;
+  justify-content: center;
+  width: 80vw;
+  margin-left:10vmin;
+  margin-right:10vmin;
+  padding-top:1vmin;
+  padding-bottom:1vmin;
+  border-top: 1px solid $mediumgray;
+  .ptext{
+    width: 40vmin;
+    padding-left:5vmin;
+    color: $darkgray;
+    font-size:2vmin;
+  }
+  .pimg{
+    width: 20vmin;
+    .prow{
+      flex-direction: row;
+      justify-content: center;
+      align-items: row;
+      display: flex;
+      padding: 0vmin;
+      margin: 0vmin;
+      .pgrid{
+        display: flex;
+        background-color: $darkgray;
+        align-items: center;
+        justify-content: center;
+        margin: 0vmin;
+        box-shadow: inset 0.5vmin 0.5vmin 0vmin 0.5vmin rgba(0,0,0,0.10);
+        padding: 0vmin;
+        border-radius: 0.4vmin;
+        border: 0.1vmin solid $lightgray;
+        // border: 0vmin;
+        width: 5vmin;
+        height: 5vmin;
+        min-width: 5vmin;
+        max-width: 5vmin;
+        min-height: 5vmin;
+        max-height: 5vmin;
+        .pdot {
+          box-shadow: inset -0.3vmin -0.3vmin 0vmin 0.3vmin rgba(0,0,0,0.10);
+            &.red{
+              background-color: $red;
+            }
+            &.blue{
+              background-color: $blue;
+            }
+            &.green{
+              background-color: $green;
+            }
+            &.white{
+              background-color: $lightgray;
+            }
+            &.preview-click-on {
+              animation-name: preview-click-on;
+              animation-duration: $preview-animation-duration;
+              animation-iteration-count: infinite;
+              animation-timing-function: ease-in-out;
+            }
+            &.preview-click-off {
+              animation-name: preview-click-off;
+              animation-duration: $preview-animation-duration;
+              animation-iteration-count: infinite;
+              animation-timing-function: ease-in-out;
+            }
+
+            &.preview-on {
+              animation-duration: $preview-animation-duration;
+              animation-name: preview-on;
+              animation-iteration-count: infinite;
+              animation-timing-function: ease-in-out;
+            }
+
+            &.preview-off {
+              animation-duration: $preview-animation-duration;
+              animation-name: preview-off;
+              animation-iteration-count: infinite;
+              animation-timing-function: ease-in-out;
+            }
+
+            display: inline-block;
+            border-radius: 50%;
+            width: 4vmin;
+            max-width: 4vmin;
+            height: 4vmin;
+            max-height: 4vmin;
+            border: 0.4vmin solid darken($darkgray, 10%);
+        }
+      }
+    }
+  }
+}
